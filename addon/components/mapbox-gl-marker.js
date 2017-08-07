@@ -63,6 +63,17 @@ export default Component.extend({
       .setLngLat(lngLat)
       .addTo(this.map);
 
+    let that = this;
+    this.element.addEventListener("click",function (e) {
+      e.preventDefault();
+      that.sendAction("showCountries", "europe");
+
+      that.map.easeTo({
+        center: that.lngLat,
+        zoom: 2.5
+    });
+
+    });
     this.set('marker', marker);
   }
 });

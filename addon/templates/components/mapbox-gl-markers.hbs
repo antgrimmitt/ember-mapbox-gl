@@ -1,0 +1,5 @@
+{{#each markerData as |mark|}}
+  {{#map.marker showCountries=showCountries lngLat=mark.pointer.geometry.coordinates as |marker|}}
+    {{ mark.value }}
+  {{/map.marker}}
+{{/each}}

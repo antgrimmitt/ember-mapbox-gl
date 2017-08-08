@@ -30,6 +30,10 @@ export default Component.extend({
     MapboxGl.accessToken = mbglConfig.accessToken;
   },
 
+  destroy() {
+    console.log('destroy');
+  },
+
   didInsertElement() {
     this._super(...arguments);
 
@@ -39,6 +43,7 @@ export default Component.extend({
   },
 
   willDestroy() {
+    console.log('willDestroy');
     this._super(...arguments);
 
     if (this.map !== null) {

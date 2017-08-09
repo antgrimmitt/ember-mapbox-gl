@@ -63,7 +63,7 @@ export default Component.extend({
     this.map.easeTo(
       {
         center: this.lngLat,
-        zoom: 3.5
+        zoom: 2
       });
 
   },
@@ -71,7 +71,7 @@ export default Component.extend({
   _setup() {
     const {lngLat, initOptions} = getProperties(this, 'lngLat', 'initOptions');
 
-    assert('mapbox-gl-marker requires lngLat, maybe you passed latLng?', lngLat);
+    assert('mapbox-gl-marker requires§ lngLat, maybe you passed latLng?', lngLat);
 
     const options = assign({},
       get(getOwner(this).resolveRegistration('config:environment'), 'mapbox-gl.marker'),

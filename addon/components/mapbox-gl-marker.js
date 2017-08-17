@@ -44,8 +44,9 @@ export default Component.extend({
 
   destroy() {
     console.log('destroy');
-
-    this.marker.remove();
+    if(this.marker) {
+      this.marker.remove();
+    }
   },
 
   willDestroy() {
@@ -59,11 +60,11 @@ export default Component.extend({
 
   click() {
     this.sendAction("showCountries", "europe");
-
+    let zoom = this.get("zoom");
     this.map.easeTo(
       {
         center: this.lngLat,
-        zoom: 2
+        zoom: zoom
       });
 
   },
@@ -71,13 +72,16 @@ export default Component.extend({
   _setup() {
     const {lngLat, initOptions} = getProperties(this, 'lngLat', 'initOptions');
 
-    assert('mapbox-gl-marker requires§ lngLat, maybe you passed latLng?', lngLat);
+    assert('mapbox-gl-marker requires lngLat, maybe you passed latLng?', lngLat);
 
     const options = assign({},
       get(getOwner(this).resolveRegistration('config:environment'), 'mapbox-gl.marker'),
       initOptions);
 
-    debugger;
+    let width = this.get('width');
+    this.element.style.width = `${200*width}px`;
+    this.element.style.height = `${200*width}px`;
+
     const marker = new MapboxGl.Marker(this.element, options)
       .setLngLat(lngLat)
       .addTo(this.map);

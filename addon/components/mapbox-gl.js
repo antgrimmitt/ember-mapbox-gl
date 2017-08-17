@@ -57,8 +57,8 @@ export default Component.extend({
     const options = assign({}, mbglConfig.map, get(this, 'initOptions'));
     options.container = this.element;
 
-    console.log("options == ", options);
     const map = new MapboxGl.Map(options);
+
     map.once('load', run.bind(this, this._onLoad, map));
   },
 
@@ -68,7 +68,10 @@ export default Component.extend({
     }
 
     this.mapLoaded(map);
-
+    let that = this;
+    map.on("zoomend", function (e) {
+      that.sendAction("zoomChanged", map.getZoom());
+    });
     this.set('map', map);
   }
 });

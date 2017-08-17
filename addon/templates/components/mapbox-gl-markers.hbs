@@ -1,5 +1,8 @@
 {{#each markerData as |mark|}}
-  {{#map.marker showCountries=showCountries lngLat=mark.pointer.geometry.coordinates as |marker|}}
+  {{#map.marker showCountries=showCountries zoom=zoom lngLat=mark.pointer width=mark.size as |marker|}}
     {{ mark.value }}
+    {{#marker.popup class="pop" isVisible=false class='popup'}}
+      {{ mark.value }} trips to {{ mark.name }}
+    {{/marker.popup}}
   {{/map.marker}}
 {{/each}}

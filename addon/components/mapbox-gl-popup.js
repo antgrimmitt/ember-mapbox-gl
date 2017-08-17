@@ -33,6 +33,8 @@ export default Component.extend({
       get(getOwner(this).resolveRegistration('config:environment'), 'mapbox-gl.popup'),
       initOptions);
 
+    options.anchor = "left";
+
     this.popup = new MapboxGl.Popup(options)
       .setDOMContent(this.domContent)
       .on('close', this._onClose);
@@ -42,6 +44,21 @@ export default Component.extend({
     } else {
       marker.setPopup(this.popup);
     }
+    let lock = false;
+    Ember.$(marker.getElement()).on("mouseenter", function() {
+      if(!lock) {
+        marker.togglePopup();
+      }
+      lock = true;
+      setTimeout(function () {
+        lock = false;
+      },500)
+
+    }).on("mouseleave", function () {
+      if(marker.getPopup().isOpen()) {
+        marker.togglePopup();
+      }
+    })
   },
 
   didReceiveAttrs() {

@@ -1,6 +1,6 @@
 {
   "name": "ember-mapbox-gl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ember integration for Mapbox GL JS",
   "keywords": [
     "ember-addon"
@@ -24,7 +24,7 @@
     "ember-cli-babel": "^6.3.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-wormhole": "^0.5.1",
-    "mapbox-gl": "https://github.com/antgrimmitt/mapbox-gl-js.git"
+    "mapbox-gl": "git+ssh://git@gitlab.com:ey-mobility/mapbox-gl.git"
   },
   "devDependencies": {
     "ember-cli": "~2.14.0",
